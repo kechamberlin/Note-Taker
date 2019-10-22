@@ -46,10 +46,12 @@
                                 <label for="note-content">Note Content:</label>
                                 <input type="text" class="form-control" id="note-content">
                             </div>
+                            <button type="submit" class="btn btn-success submit">Submit</button>
+                        </form>
 
 
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                            <script src="/assets/js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/assets/js/index.js"></script>
 </body>
 
 </html>
@@ -70,8 +72,8 @@
 
         // Here we grab the form elements
         var newNote = {
-            title: $("#reserve-name").val().trim(),
-            text: $("#reserve-phone").val().trim(),
+            title: $("#note-title").val().trim(),
+            text: $("#note-content").val().trim(),
         };
 
         console.log(newNote);
@@ -79,7 +81,6 @@
         // This line is the magic. It"s very similar to the standard ajax function we used.
         // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
         // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-        // depending on if a tables is available or not.
 
         $.post("/api/tables", newNote,
             function (data) {
@@ -95,11 +96,8 @@
                 }
 
                 // Clear the form when submitting
-                $("#reserve-name").val("");
-                $("#reserve-phone").val("");
-                $("#reserve-email").val("");
-                $("#reserve-unique-id").val("");
-
+                $("#note-title").val("");
+                $("#note-content").val("");
             });
 
     });
