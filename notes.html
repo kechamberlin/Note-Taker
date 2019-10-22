@@ -28,23 +28,30 @@
         </div>
 
 
+
         <div class="row">
-
-            <div class="col-lg-12">
-
-                <!-- Current Notes in Use -->
-                <div class="card">
+                <div class="col-lg-12">
+                  <!-- Reservation Page -->
+                  <div class="card">
                     <div class="card-header">
-                        <h4>Current Notes</h4>
+                      Table Reservation
                     </div>
                     <div class="card-body">
-                        <ul id="notesList" class="list-group"></ul>
-                    </div>
-                </div>
+                      <form role="form">
+                        <div class="form-group">
+                          <label for="reserve-name">Name</label>
+                          <input type="text" class="form-control" id="reserve-name">
+                        </div>
+                        <div class="form-group">
+                          <label for="reserve-phone">Phone Number</label>
+                          <input type="text" class="form-control" id="reserve-phone">
+                        </div>
 
-            </div>
 
-        </div>
+
+
+
+
 
 
 
@@ -60,3 +67,53 @@
 </body>
 
 </html>
+
+
+<!-- ======================================================
+    POST form data to express server
+ ========================================================== -->
+
+<script type="text/javascript">
+    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+  
+    $(".submit").on("click", function(event) {
+      event.preventDefault();
+  
+      // Here we grab the form elements
+      var newNote = {
+        title: $("#reserve-name").val().trim(),
+        text: $("#reserve-phone").val().trim(),
+      };
+  
+      console.log(newNote);
+  
+      // This line is the magic. It"s very similar to the standard ajax function we used.
+      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+      // depending on if a tables is available or not.
+  
+      $.post("/api/tables", newNote,
+        function(data) {
+  
+          // If a table is available... tell user they are booked.
+          if (data) {
+            alert("Yay! You are officially booked!");
+          }
+  
+          // If a table is available... tell user they on the waiting list.
+          else {
+            alert("Sorry you are on the wait list");
+          }
+  
+          // Clear the form when submitting
+          $("#reserve-name").val("");
+          $("#reserve-phone").val("");
+          $("#reserve-email").val("");
+          $("#reserve-unique-id").val("");
+  
+        });
+  
+    });
