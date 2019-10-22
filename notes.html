@@ -82,18 +82,13 @@
         // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
         // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
 
-        $.post("/api/tables", newNote,
+        $.post("/index", newNote,
             function (data) {
 
-                // If a table is available... tell user they are booked.
                 if (data) {
-                    alert("Yay! You are officially booked!");
+                    alert("Your new note has been added!");
                 }
 
-                // If a table is available... tell user they on the waiting list.
-                else {
-                    alert("Sorry you are on the wait list");
-                }
 
                 // Clear the form when submitting
                 $("#note-title").val("");
