@@ -1,9 +1,9 @@
 # Note-Taker
 
-Idea behind this application is for a user to write their own notes.
+This application enables a user to create their own notes.
 
-On the home page, the user's current notes are displayed on the bottom.  Meanwhile, if the user want to create a new note, he or she can click on the "new note" button.
+Upon visiting the home page, the user will notice will notice a card that reads "Current Notes."  This is where all future notes will be held.
 
-Upon clicking the "new note" button, the user will be redirected to another HTML page.  Here, the user can fill out a title and body content for their note.
+At the top of the page, a user can click a button that reads "Write New Note."  When clicked, the user will be redirected to a new page where they can enter a note title and note content.  
 
-Upon clicking submit, the new note should be appending to the "current notes" card on the home page.
+When the user clicks "submit," they can go back to the home page and see their new note appended to the HTML document under "Current Notes."
